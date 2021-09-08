@@ -1,0 +1,9 @@
+{
+    "autoDocstring.docstringFormat": "google",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "python.formatting.blackPath": ".venv/bin/black",
+}

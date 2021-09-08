@@ -14,8 +14,6 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 
-%matplotlib ipympl
-
 # In[2]:
 
 

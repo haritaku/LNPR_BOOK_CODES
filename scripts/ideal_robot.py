@@ -14,14 +14,16 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 
+%matplotlib ipympl
+
 # In[2]:
 
 
 class World:
-    def __init__(self, time_span, time_interval, debug=False):
+    def __init__(self, time_span: float, time_interval: float, debug: bool = False):
         self.objects = []
         self.debug = debug
-        self.time_span = time_span
+        self.time_span = time_span  # Unit is sec
         self.time_interval = time_interval
 
     def append(self, obj):
@@ -37,17 +39,18 @@ class World:
         ax.set_ylabel("Y", fontsize=10)
 
         elems = []
+        frames = int(self.time_span / self.time_interval) + 1
 
         if self.debug:
-            for i in range(int(self.time_span / self.time_interval)):
+            for i in range(frames - 1):
                 self.one_step(i, elems, ax)
         else:
             self.ani = anm.FuncAnimation(
                 fig,
                 self.one_step,
                 fargs=(elems, ax),
-                frames=int(self.time_span / self.time_interval) + 1,
-                interval=int(self.time_interval * 1000),
+                frames=frames,
+                interval=int(self.time_interval * 1000),  # Unit is ms.
                 repeat=False,
             )
             plt.show()
@@ -68,7 +71,7 @@ class World:
 
 class IdealRobot:
     def __init__(self, pose, agent=None, sensor=None, color="black"):  # 引数を追加
-        self.pose = pose
+        self.pose = pose  # 3 dims. 0: x, 1: y, 2: theta
         self.r = 0.2
         self.color = color
         self.agent = agent
@@ -96,7 +99,7 @@ class IdealRobot:
 
     @classmethod
     def state_transition(cls, nu, omega, time, pose):
-        t0 = pose[2]
+        t0 = pose[2]  # theta
         if math.fabs(omega) < 1e-10:
             return pose + np.array([nu * math.cos(t0), nu * math.sin(t0), omega]) * time
         else:

@@ -6,4 +6,7 @@
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
     "python.formatting.blackPath": ".venv/bin/black",
+    "python.analysis.extraPaths": [
+        "./scripts"
+    ]
 }

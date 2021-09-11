@@ -21,8 +21,8 @@ class World:
     def __init__(self, time_span: float, time_interval: float, debug: bool = False):
         self.objects = []
         self.debug = debug
-        self.time_span = time_span  # Unit is sec
-        self.time_interval = time_interval
+        self.time_span = time_span  # Unit is sec.
+        self.time_interval = time_interval  # Unit is sec.
 
     def append(self, obj):
         self.objects.append(obj)
@@ -70,7 +70,7 @@ class World:
 class IdealRobot:
     def __init__(self, pose, agent=None, sensor=None, color="black"):  # 引数を追加
         self.pose = pose  # 3 dims. 0: x, 1: y, 2: theta
-        self.r = 0.2
+        self.r = 0.2  # ideal robot's radius (meter). default to 0.2
         self.color = color
         self.agent = agent
         self.poses = [pose]
@@ -124,8 +124,8 @@ class IdealRobot:
 
 class Agent:
     def __init__(self, nu, omega):
-        self.nu = nu
-        self.omega = omega
+        self.nu = nu  # Unit is m/s.
+        self.omega = omega  # Unit is rad/s.
 
     def decision(self, observation=None):
         return self.nu, self.omega
